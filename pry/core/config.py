@@ -6,7 +6,7 @@ from typing import Literal
 from pydantic import FilePath, HttpUrl, PostgresDsn, computed_field
 from pydantic_settings import BaseSettings
 
-project_root = Path(__file__).parent.parent.absolute()
+project_root = Path(__file__).parent.parent.parent.absolute()
 
 
 class Settings(BaseSettings):

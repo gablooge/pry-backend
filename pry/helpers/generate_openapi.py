@@ -1,4 +1,4 @@
-import subprocess
+import subprocess  # nosec B404
 import sys
 
 import yaml
@@ -19,7 +19,7 @@ def main() -> None:
         case ["watch"]:
             for change in watch("api"):
                 print(change)
-                subprocess.run([*sys.orig_argv[:-1]])
+                subprocess.run([*sys.orig_argv[:-1]])  # nosec B603
         case _:
             write()
 

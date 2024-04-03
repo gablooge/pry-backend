@@ -6,8 +6,8 @@ from alembic import context
 from sqlalchemy import Engine, engine_from_config, pool
 from sqlalchemy.sql.schema import SchemaItem
 
-from pry.api.models import Base
 from pry.core.config import settings
+from pry.core.models import Base
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.

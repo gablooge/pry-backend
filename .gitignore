@@ -398,3 +398,7 @@ products/**/cache
 # agent files
 /frontend/*.deb
 /frontend/.angular
+
+# safety data
+insecure.json
+insecure_full.json

@@ -32,8 +32,8 @@ async def health(
         with db.begin():
             db.execute(text("SELECT 1"))
             health.db = True
-    except Exception:
-        pass
+    except Exception as e:
+        logger.warning(f"health > checking database failing > {e}")
 
     if not health.db:
         response.status_code = status.HTTP_503_SERVICE_UNAVAILABLE

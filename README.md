@@ -80,18 +80,22 @@ Running tests locally requires running the other services in Docker:
 ```sh
 source .env
 docker compose -f docker-compose.dev.yml up -d --build
+poetry run coverage run -m pytest $@ && coverage xml
 ```
 
-### Generating migrations
+### Writing Models and Generating migrations
+
+After writing a new models, the `pry.core.__init__.py` should be updated,
+adding the models to be imported so the alembic can detect the new models.
 
 ```sh
 source .env
 docker compose -f docker-compose.dev.yml build
-docker compose -f docker-compose.dev.yml run --rm app alembic -c pry/alembic.ini revision --autogenerate -m "Describe this migration"
+docker compose -f docker-compose.dev.yml run --rm app alembic revision --autogenerate -m "Describe this migration"
 # Look the generated migrations versions, check if there's new ENUM, make sure add drop type e.g op.execute("DROP TYPE enumname") in downgrade()
 
 # alternatively to generate the alembic migration locally with poetry
-poetry run alembic -c pry/alembic.ini revision --autogenerate -m "Describe this migration"
+poetry run alembic revision --autogenerate -m "Describe this migration"
 ```
 
 ### Using Swagger UI
